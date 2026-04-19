@@ -1,0 +1,5 @@
+2026-04-19T16:20:00Z treasury-monitor ALERT
+severity_hint=high
+wallet=treasury-hot-wallet-01
+signal=unexpected outbound transfer burst
+details=Three outbound transfers executed outside the normal payout window. No matching change ticket found. Signer scope and destination addresses not yet verified.

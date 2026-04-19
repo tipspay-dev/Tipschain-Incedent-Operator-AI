@@ -1,0 +1,119 @@
+{
+  "incident_title": "Suspicious treasury outflow alert on hot wallet",
+  "severity": "SEV-2",
+  "confidence_level": "Medium",
+  "current_status": "Under investigation; containment not yet executed",
+  "affected_systems_assets": "Treasury hot wallet, signer operations, payout automation",
+  "potential_business_impact": "Potential unauthorized transfer and downstream treasury disruption",
+  "summary": "An automated alert reported an unexpected outbound transfer pattern from a treasury hot wallet. The activity is not yet confirmed as malicious.",
+  "earliest_known_timestamp_utc": "2026-04-19T16:20:00Z",
+  "detection_source": "Treasury monitoring alert",
+  "current_observed_indicators": [
+    "Unexpected outbound transfer alert fired",
+    "Transfer pattern deviates from normal payout cadence",
+    "No confirmed operator maintenance window recorded"
+  ],
+  "confirmed_facts": [
+    "A treasury monitoring alert was generated at 2026-04-19T16:20:00Z",
+    "The wallet under review is classified as a hot wallet",
+    "No approved emergency treasury run is documented in the incident input"
+  ],
+  "working_hypotheses": [
+    "Unauthorized wallet use or signer compromise",
+    "Misconfigured automation or unintended payout batch",
+    "False positive caused by expected but undocumented operational activity"
+  ],
+  "impact_assessment": {
+    "funds_at_risk": "Unknown pending wallet balance, transfer value, and signer scope verification",
+    "systems_affected": "Treasury payout operations and related automation",
+    "users_affected": "Unknown at this stage",
+    "operational_risk": "High if treasury automation remains active during investigation",
+    "reputational_risk": "Moderate to high if unauthorized movement is confirmed",
+    "regulatory_compliance_risk": "Potentially material if customer or custodial funds were involved"
+  },
+  "immediate_actions": [
+    {
+      "description": "Preserve wallet, automation, and alert logs before any configuration changes",
+      "labels": ["approved-safe", "evidence-preserving"],
+      "rationale": "This protects forensic evidence and supports later attribution and root-cause analysis."
+    },
+    {
+      "description": "Temporarily suspend non-essential treasury automation if pre-authorized by playbook",
+      "labels": ["containment", "needs-human-approval"],
+      "rationale": "This reduces additional fund movement risk while keeping the action reversible."
+    },
+    {
+      "description": "Review current balances, recent transactions, and signer access scope for the hot wallet",
+      "labels": ["approved-safe", "containment"],
+      "rationale": "This confirms whether there is active loss, ongoing attacker access, or a benign explanation."
+    }
+  ],
+  "investigation_logs_to_check": [
+    "Treasury automation logs",
+    "Signer service access logs",
+    "RPC request logs",
+    "SIEM alert history"
+  ],
+  "investigation_onchain_data": [
+    "Recent outbound transactions from the hot wallet",
+    "Token approval changes",
+    "Role or admin changes on related contracts"
+  ],
+  "investigation_wallets_contracts_transactions": [
+    "Treasury hot wallet address under alert",
+    "Destination wallet addresses in the suspicious transfers",
+    "Any contracts touched by the suspicious transactions"
+  ],
+  "investigation_access_changes": [
+    "Recent signer key usage",
+    "Recent IAM or secret access changes",
+    "Any CI/CD deployments affecting payout automation"
+  ],
+  "teams_to_involve": [
+    "Security operations",
+    "Treasury operations",
+    "Blockchain engineering",
+    "Incident commander"
+  ],
+  "evidence_register": {
+    "transaction_hashes": [],
+    "wallet_addresses": [],
+    "contracts": [],
+    "block_numbers": [],
+    "log_sources": [
+      "Treasury monitoring system",
+      "Signer service logs",
+      "RPC gateway logs"
+    ],
+    "screenshots": [],
+    "alerts": [
+      "Unexpected outbound transfer alert"
+    ],
+    "timeline_entries": [
+      "2026-04-19T16:20:00Z - Treasury monitoring alert generated",
+      "2026-04-19T16:24:00Z - Incident triage initiated"
+    ]
+  },
+  "escalation_decision": {
+    "escalate": true,
+    "who_to_page": [
+      "Security on-call",
+      "Treasury owner",
+      "Incident commander"
+    ],
+    "why": "Potential treasury exposure and possible ongoing fund movement justify immediate cross-functional response."
+  },
+  "unknowns": [
+    "Whether the transfer is authorized",
+    "Whether active attacker access still exists",
+    "Exact funds at risk",
+    "Whether any downstream systems were also accessed"
+  ],
+  "confirm_next": [
+    "Validate the outbound transaction set and destination addresses",
+    "Confirm signer access history and automation job ownership",
+    "Decide whether to suspend treasury automation"
+  ],
+  "estimated_decision_point_utc": "2026-04-19T16:45:00Z",
+  "recommended_next_step": "Validate the exact outbound transactions and signer activity now, then decide within the next review window whether treasury automation should be temporarily suspended under the approved containment playbook."
+}
