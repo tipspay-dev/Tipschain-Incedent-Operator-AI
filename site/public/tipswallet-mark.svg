@@ -1,0 +1,33 @@
+<svg width="1220" height="720" viewBox="0 0 1220 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="glow-a" x1="214" y1="180" x2="972" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="0.48" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#E879F9"/>
+    </linearGradient>
+    <linearGradient id="glow-b" x1="305" y1="104" x2="944" y2="621" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A5F3FC" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#F0ABFC" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="soft" x="0" y="0" width="1220" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+  <g filter="url(#soft)" opacity="0.45">
+    <ellipse cx="606" cy="362" rx="288" ry="120" fill="#22D3EE"/>
+    <ellipse cx="640" cy="356" rx="250" ry="90" fill="#C026D3"/>
+  </g>
+  <path d="M356 168H864C903.765 168 936 200.235 936 240V480C936 519.765 903.765 552 864 552H356C316.235 552 284 519.765 284 480V240C284 200.235 316.235 168 356 168Z" fill="#071225" stroke="url(#glow-a)" stroke-width="10"/>
+  <path d="M356 196H864C888.301 196 908 215.699 908 240V480C908 504.301 888.301 524 864 524H356C331.699 524 312 504.301 312 480V240C312 215.699 331.699 196 356 196Z" fill="#081024"/>
+  <rect x="360" y="236" width="112" height="248" rx="28" fill="url(#glow-a)" opacity="0.96"/>
+  <rect x="430" y="236" width="452" height="62" rx="20" fill="#0E223F" stroke="url(#glow-b)" stroke-opacity="0.65"/>
+  <rect x="430" y="326" width="352" height="44" rx="18" fill="#0D1C35"/>
+  <rect x="430" y="392" width="296" height="44" rx="18" fill="#0D1C35"/>
+  <circle cx="820" cy="416" r="62" fill="url(#glow-a)" opacity="0.95"/>
+  <path d="M377 290H455" stroke="#041122" stroke-width="20" stroke-linecap="round"/>
+  <path d="M377 342H455" stroke="#041122" stroke-width="20" stroke-linecap="round"/>
+  <path d="M377 394H430" stroke="#041122" stroke-width="20" stroke-linecap="round"/>
+  <path d="M796 414H844" stroke="#051224" stroke-width="18" stroke-linecap="round"/>
+  <path d="M572 598C533.754 598 502.671 629.083 502.671 667.329V668H717.329V667.329C717.329 629.083 686.246 598 648 598H572Z" fill="url(#glow-a)" opacity="0.92"/>
+  <text x="610" y="464" text-anchor="middle" fill="url(#glow-b)" font-family="Space Grotesk, Arial, sans-serif" font-size="74" font-weight="700" letter-spacing="8">TIPSWALLET</text>
+</svg>

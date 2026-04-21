@@ -2,3 +2,10 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
+.codex-tmp/
+.playwright-cli/
+site/node_modules/
+site/dist/
+site/.playwright-cli/
+site/preview-*.log
+output/playwright/
