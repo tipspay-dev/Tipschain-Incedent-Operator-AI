@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  EXPIRED
+  CANCELLED
+}
+
+enum OtpChannel {
+  SMS
+  EMAIL
+}
+
+model Reservation {
+  id           String            @id @default(uuid())
+  username     String            @db.VarChar(30)
+  email        String?           @db.VarChar(255)
+  phone        String?           @db.VarChar(32)
+  status       ReservationStatus @default(PENDING)
+  expiresAt    DateTime
+  confirmedAt  DateTime?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  otpChallenge OtpChallenge?
+  sessions     AuthSession[]
+
+  @@index([username, status], map: "reservation_username_status_idx")
+  @@map("reservations")
+}
+
+model OtpChallenge {
+  id            String      @id @default(uuid())
+  reservationId String      @unique
+  codeHash      String      @db.VarChar(64)
+  channel       OtpChannel
+  expiresAt     DateTime
+  attemptCount  Int         @default(0)
+  lockedAt      DateTime?
+  sentAt        DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt], map: "otp_challenge_expires_idx")
+  @@map("otp_challenges")
+}
+
+model UsernameBlocklist {
+  id        String   @id @default(uuid())
+  username  String   @unique @db.VarChar(30)
+  reason    String?  @db.VarChar(255)
+  createdAt DateTime @default(now())
+
+  @@map("username_blocklist")
+}
+
+model AuthSession {
+  id            String      @id
+  reservationId String
+  tokenHash     String      @db.VarChar(64)
+  expiresAt     DateTime
+  createdAt     DateTime    @default(now())
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt], map: "auth_session_expires_idx")
+  @@map("auth_sessions")
+}

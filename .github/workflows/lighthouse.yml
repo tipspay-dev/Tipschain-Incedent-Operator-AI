@@ -1,0 +1,58 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    paths:
+      - "site/**"
+      - ".github/workflows/lighthouse.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "site/**"
+      - ".github/workflows/lighthouse.yml"
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Start application
+        run: |
+          nohup npm run start -- --hostname 127.0.0.1 --port 3000 >/tmp/tipspay-next.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/tipspay-next.log
+          exit 1
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://127.0.0.1:3000/
+            http://127.0.0.1:3000/tr
+          configPath: ./site/lighthouserc.js
+          uploadArtifacts: true
+          runs: 1

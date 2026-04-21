@@ -1,21 +1,47 @@
 {
-  "name": "tipspay-hero-site",
+  "name": "tipspay-launch-site",
   "private": true,
-  "version": "0.1.0",
-  "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:push": "prisma db push",
+    "smoke:test": "ts-node --transpile-only scripts/smokeTest.ts",
+    "purge:cdn": "bash scripts/purge-cdn.sh"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "@prisma/client": "^6.7.0",
+    "@sentry/nextjs": "^9.17.0",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.24",
+    "jose": "^5.9.6",
+    "lucide-react": "^0.542.0",
+    "next": "^14.2.35",
+    "posthog-js": "^1.248.4",
+    "posthog-node": "^5.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "resend": "^4.5.0",
+    "tailwind-merge": "^2.5.2",
+    "twilio": "^5.3.6",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.13",
-    "@vitejs/plugin-react": "^5.1.0",
-    "tailwindcss": "^4.1.13",
-    "vite": "^7.1.7"
+    "@types/node": "^22.13.10",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "prisma": "^6.7.0",
+    "tailwindcss": "^3.4.17",
+    "treosh-lighthouse-ci-action": "^12.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   }
 }
